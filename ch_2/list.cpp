@@ -52,6 +52,30 @@ void add_node_end( struct node* head, struct node* new_pointer)
 	new_pointer->next=NULL;
 }
 
+
+// Adding nodes in between the linked lists.
+// What are the additional inputs that I would need?
+// The index 'after' which I want to add a node
+void add_node_middle(struct node* head, struct node* new_pointer, int index)
+{
+	// First we have to traverse the Linked List until the position is exhausted.
+	// This will give us the given index's element of the list in the current pointer.
+	// We just need to append our new pointer here.
+	struct node* current_pointer=head;
+	struct node* previous_pointer;
+	int count=0;
+	while(count<=index)
+	{
+		previous_pointer=current_pointer;
+		current_pointer=current_pointer->next;
+		++count;
+	}
+	// Make the new element next pointer point to the next index's element
+	new_pointer->next=previous_pointer->next;
+	// Make the current pointer next point to the new pointer.
+	previous_pointer->next=new_pointer;
+}
+
 int main()
 {
 	// Defining the first node explicitly for the linked list.
@@ -88,6 +112,7 @@ int main()
 	struct node third_node;
 	struct node fourth_node;
 	struct node fifth_node;
+	struct node sixth_node;
 	
 	second_node.data=98;
 	third_node.data=97;
@@ -95,14 +120,23 @@ int main()
 	fourth_node.data=45;
 	fifth_node.data=46;
 
+	sixth_node.data=57;
 
 	add_node_end(head, &second_node);
 	add_node_end(head, &third_node);
 	add_node_start(&head, &fifth_node);
 	add_node_start(&head, &fourth_node);
 
-
 	struct node* iter = head;
+	while(iter != NULL)
+	{
+		cout<<iter->data<<endl;
+		iter=iter->next;
+	}
+	cout<<"\n"<<endl;
+	add_node_middle(head, &sixth_node, 4);
+
+	iter = head;
 	while(iter != NULL)
 	{
 		cout<<iter->data<<endl;

@@ -20,6 +20,21 @@ struct node
 // We also need a position where we want to add a node. THis can break into 2 parts
 // namely, adding a node in the starting of the given linked list and 
 // adding a node in the middle of the linked list maybe.
+
+void add_node_start(struct node** daddy_head, struct node* new_pointer)
+{
+	// So my basic doubt is that when we are adding a node in the starting, how to
+	// update the head pointer here. 
+	// The answer is that here we need a double pointer to the head or else we 
+	// won't be able to change the actual head variable. (We need a pointer to the
+	// head pointer)
+	new_pointer->next=*daddy_head;
+
+	*daddy_head=new_pointer;
+	// For some reason I am not able to print the following lines
+	// cout<<*daddy_head->data<<endl;
+}
+
 void add_node_end( struct node* head, struct node* new_pointer)
 {
 	struct node* current_pointer=head;
@@ -71,12 +86,21 @@ int main()
 	// Writing "struct node* second_node, third_node;" is wrong.
 	struct node second_node;
 	struct node third_node;
+	struct node fourth_node;
+	struct node fifth_node;
 	
 	second_node.data=98;
 	third_node.data=97;
 
+	fourth_node.data=45;
+	fifth_node.data=46;
+
+
 	add_node_end(head, &second_node);
 	add_node_end(head, &third_node);
+	add_node_start(&head, &fifth_node);
+	add_node_start(&head, &fourth_node);
+
 
 	struct node* iter = head;
 	while(iter != NULL)

@@ -15,14 +15,15 @@ struct node
 };
 
 // Deleting a node from the linked list.
-// void delete_node_start(struct node** daddy_head)
+// void delete_node_start(struct node** bighead)
 // {
-// 	*daddy_head = **daddy_head.next;
+// 	*bighead = *bighead->next;
 // }
 
 
-void delete_node_start(struct node* head, struct node** bighead)
+void delete_node_start(struct node** bighead)
 {
+	// Why I have to use a temporary variable here. There must be some reason for this too.
 	struct node* temp=*bighead;
 	*bighead = temp-> next;
 }

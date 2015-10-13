@@ -14,13 +14,27 @@ struct node
 	struct node* next;
 };
 
+// Deleting a node from the linked list.
+// void delete_node_start(struct node** daddy_head)
+// {
+// 	*daddy_head = **daddy_head.next;
+// }
+
+
+void delete_node_start(struct node* head, struct node** bighead)
+{
+	struct node* temp=*bighead;
+	*bighead = temp-> next;
+}
+
+
+
 // Inputs
 // The pointer of the head of the linked list to which the new node is to be added.
 // We need pointer to the node that is to be added.
 // We also need a position where we want to add a node. THis can break into 2 parts
 // namely, adding a node in the starting of the given linked list and 
 // adding a node in the middle of the linked list maybe.
-
 void add_node_start(struct node** daddy_head, struct node* new_pointer)
 {
 	// So my basic doubt is that when we are adding a node in the starting, how to
@@ -127,6 +141,13 @@ int main()
 	add_node_start(&head, &fifth_node);
 	add_node_start(&head, &fourth_node);
 
+	
+	
+	add_node_middle(head, &sixth_node, 4);
+	delete_node_start(head, &head);
+
+
+
 	struct node* iter = head;
 	while(iter != NULL)
 	{
@@ -134,12 +155,4 @@ int main()
 		iter=iter->next;
 	}
 	cout<<"\n"<<endl;
-	add_node_middle(head, &sixth_node, 4);
-
-	iter = head;
-	while(iter != NULL)
-	{
-		cout<<iter->data<<endl;
-		iter=iter->next;
-	}
 }

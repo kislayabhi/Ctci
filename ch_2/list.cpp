@@ -14,20 +14,11 @@ struct node
 	struct node* next;
 };
 
-// Deleting a node from the linked list.
-// void delete_node_start(struct node** bighead)
-// {
-// 	*bighead = *bighead->next;
-// }
-
-
+//Deleting a node from the linked list.
 void delete_node_start(struct node** bighead)
 {
-	// Why I have to use a temporary variable here. There must be some reason for this too.
-	struct node* temp=*bighead;
-	*bighead = temp-> next;
+	*bighead = *bighead->next;
 }
-
 
 
 // Inputs
@@ -145,7 +136,7 @@ int main()
 	
 	
 	add_node_middle(head, &sixth_node, 4);
-	delete_node_start(head, &head);
+	delete_node_start(&head);
 
 
 

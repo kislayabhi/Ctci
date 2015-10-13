@@ -15,11 +15,35 @@ struct node
 };
 
 //Deleting a node from the linked list.
+// Remember freeing the deleted node also.
 void delete_node_start(struct node** bighead)
 {
-	*bighead = *bighead->next;
+	// Doing this is wrong since in c++, struct is a class and if its constructor is
+	// not defined explicitly, then the compiler automatically defines them. So no
+	// need of delete.
+
+	//struct node *temp = *bighead;
+	*bighead = (*bighead)->next;
+	//delete temp	;
 }
 
+// Deleting a node at the given index from the linked list.
+void delete_node_middle(struct node* head, int index)
+{
+	int count=0;
+	struct node* current_pointer=head;
+	struct node* previous_pointer;
+	// It is important to remember that there will be only '<' sign
+	// but not the '<=' sign since if we do that, the current pointer will not
+	// have the pointer to the node that we want to delete but the next to it.
+	while(count<index)
+	{
+		previous_pointer=current_pointer;
+		current_pointer=current_pointer->next;
+		++count;
+	}
+	previous_pointer->next=current_pointer->next;
+}
 
 // Inputs
 // The pointer of the head of the linked list to which the new node is to be added.
@@ -146,5 +170,14 @@ int main()
 		cout<<iter->data<<endl;
 		iter=iter->next;
 	}
+
 	cout<<"\n"<<endl;
+
+	delete_node_middle(head, 3);
+	iter = head;
+	while(iter != NULL)
+	{
+		cout<<iter->data<<endl;
+		iter=iter->next;
+	}
 }

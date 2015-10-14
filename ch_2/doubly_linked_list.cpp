@@ -55,6 +55,44 @@ void add_node(struct node** ptr2head, int index, int value)
 	}
 }
 
+// Inputs
+// reference to the head pointer
+// The index at which we are deleting the nodes.
+void delete_node(struct node** ptr2head, int index)
+{
+	struct node* head=*ptr2head;
+	struct node* temp=head;
+	if(index==0)
+	{	
+		*ptr2head=(*ptr2head)->next;
+		head->prev=NULL;
+		delete(temp);
+	}
+	else
+	{	// To reach till the index, we have to traverse the list
+		struct node* current_pointer=head;
+		int count=0;
+		while(count<index)
+		{
+			current_pointer=current_pointer->next;
+			++count;
+		}
+		if(current_pointer->next==NULL)
+		{
+			temp=current_pointer;
+			current_pointer->prev->next=NULL;
+			delete(temp);
+		}
+		else
+		{
+			temp=current_pointer;
+			current_pointer->prev->next=current_pointer->next;
+			current_pointer->next->prev=current_pointer->prev;
+			delete(temp);
+		}
+	}
+}
+
 int main()
 {
 	// Construct a linked list of 2 nodes to check the results.
@@ -73,6 +111,8 @@ int main()
 	// Add nodes at the required index.
 	add_node(&head, 2, 1);
 
+
+
 	// Print all the elements of the linked list.
 	struct node* iter = head;
 	while(iter != NULL)
@@ -80,5 +120,14 @@ int main()
 		cout<<iter->data<<endl;
 		iter=iter->next;
 	}
+	cout<<"\n"<<endl;
 
+	delete_node(&head, 2);
+	// Print all the elements of the linked list.
+	iter = head;
+	while(iter != NULL)
+	{
+		cout<<iter->data<<endl;
+		iter=iter->next;
+	}
 }

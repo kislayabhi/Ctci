@@ -37,7 +37,30 @@ int main()
             it--;
           }
    }
+   
    for(std::list<int>::iterator it=my_list.begin(); it!=my_list.end(); ++it)
+   {
+        std::cout<<*it<<std::endl;
+   }
+
+   /* Now to do the same thing without using buffers */
+   std::list<int> my_list2(my_array, my_array+sizeof(my_array)/sizeof(int));
+
+   for(std::list<int>::iterator it1=my_list2.begin(); it1!=my_list2.end(); ++it1)
+   {
+      // Remember: You cannot do the following.
+      // std::list<int>::iterator it2=it1+1;
+      std::list<int>::iterator it2=it1;
+      it2++;
+      for(it2; it2!=my_list2.end(); ++it2)
+        if(*it1 == *it2)
+        {
+            it2=my_list2.erase(it2);
+            it2--;
+        }
+   }
+
+   for(std::list<int>::iterator it=my_list2.begin(); it!=my_list2.end(); ++it)
    {
         std::cout<<*it<<std::endl;
    }

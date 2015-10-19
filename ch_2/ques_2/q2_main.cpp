@@ -6,7 +6,9 @@ int main()
 	int my_array[]={41 , 63, 2, 78, 23, 98, 44, 56, 12, 87, 43, 17, 3, 77, 13, 96, 43};
 	std::list<int> my_list(my_array, my_array+sizeof(my_array)/sizeof(int));
 
-	int k = 5;
+	int k = 0;
+
+
 	std::list<int>::iterator fast_it=my_list.begin();
 	std::list<int>::iterator slow_it=fast_it;
 	
@@ -19,5 +21,8 @@ int main()
 		++slow_it;
 	}
 
-	std::cout<<*slow_it<<std::endl;
+	if(k==0)
+		std::cout<<*(--fast_it)<<std::endl;
+	else
+		std::cout<<*slow_it<<std::endl;
 }

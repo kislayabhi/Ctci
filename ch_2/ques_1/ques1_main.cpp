@@ -50,6 +50,7 @@ int main()
    {
       // Remember: You cannot do the following.
       // std::list<int>::iterator it2=it1+1;
+      // This is so, since ++ is overloaded for the linear traversal(just like .next)
       std::list<int>::iterator it2=it1;
       it2++;
       for(it2; it2!=my_list2.end(); ++it2)

@@ -4,19 +4,21 @@
 
 int main()
 {
-    /*
-    Don't initialize your list this way. Doing it this way makes it
-    non-changeable.
+    
+    // Don't initialize your list this way. Doing it this way makes it
+    // non-changeable.
     int my_array[]={5, 9, 6, 5, 9};
     std::list<int> my_list(my_array, my_array+sizeof(my_array)/sizeof(int));
-    */
+    
 
-    std::list<int> my_list;
+    /*std::list<int> my_list;
     my_list.push_back(5);
     my_list.push_back(9);
     my_list.push_back(6);
     my_list.push_back(5);
     my_list.push_back(9);
+    my_list.push_back(6);*/
+
 
     /*
     Create a map
@@ -41,12 +43,13 @@ int main()
        // found
           {
             //std::cout<<*it<<std::endl;
-            my_list.erase(it);
+            it=my_list.erase(it);
+            it--;
           }
    }
-   // for(std::list<int>::iterator it=my_list.begin(); it!=my_list.end(); ++it)
-   // {
-   //      std::cout<<*it<<std::endl;
-   // }
+   for(std::list<int>::iterator it=my_list.begin(); it!=my_list.end(); ++it)
+   {
+        std::cout<<*it<<std::endl;
+   }
 
 }
